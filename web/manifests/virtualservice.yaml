@@ -6,7 +6,7 @@ spec:
   hosts:
     - todo.red-badger.com
   gateways:
-    - istio-system/ingressgateway
+    - istio-system/todo-gateway
   http:
     - route:
         - destination:

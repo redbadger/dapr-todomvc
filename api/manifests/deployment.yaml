@@ -21,7 +21,7 @@ spec:
             - name: MOUNTED_AT
               value: /api
             - name: DATABASE_URL
-              value: postgres://stuartharris@host.docker.internal/todos
+              value: postgres://postgres:postgres@host.docker.internal:5432/postgres
           ports:
             - containerPort: 3030
           resources:

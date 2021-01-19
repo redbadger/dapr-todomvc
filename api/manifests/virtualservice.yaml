@@ -6,11 +6,13 @@ spec:
   hosts:
     - todo.red-badger.com
   gateways:
-    - istio-system/ingressgateway
+    - istio-system/todo-gateway
   http:
     - match:
         - uri:
-            prefix: "/api"
+            prefix: "/api/"
+        - uri:
+            exact: "/api"
       rewrite:
         uri: "/"
       route:

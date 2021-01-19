@@ -13,5 +13,27 @@ The following diagram shows the setup in Kubernetes, with Istio and Dapr sidecar
 
 ## To get started
 
-- The Web UI [readme](./web/README.md)
-- The API [readme](./api/README.md)
+1. Install the `istioctl` cli, and the `dapr` cli, if you don't already have them.
+
+   ```sh
+   brew install istioctl
+   brew install dapr-cli@1.0.0-rc.3
+   ```
+
+2. Install Istio and Dapr
+
+   ```sh
+   istioctl install
+   dapr init --runtime-version 1.0.0-rc.2 --kubernetes
+   ```
+
+3. Apply system-wide manifests
+
+   This will install a `gateway` resource in the `istio-system` namespace, to route HTTP traffic to our virtual services.
+
+   ```sh
+   (cd manifests && make)
+   ```
+
+4. Follow the Web UI [readme](./web/README.md)
+5. Follow the API [readme](./api/README.md)

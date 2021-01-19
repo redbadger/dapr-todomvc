@@ -4,7 +4,6 @@ localdb := postgres://postgres:postgres@localhost:5432
 default:
 	cargo run -- --database-url=$(localdb)
 
-
 .PHONY: docker
 docker: prepare
 	docker build -t todomvc_api .
