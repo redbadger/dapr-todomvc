@@ -2,6 +2,7 @@ namespace: todomvc-api
 
 resources:
   - namespace.yaml
+  - dapr.yaml
   - deployment.yaml
   - service.yaml
   - virtualservice.yaml

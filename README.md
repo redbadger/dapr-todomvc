@@ -27,7 +27,21 @@ The following diagram shows the setup in Kubernetes, with Istio and Dapr sidecar
    dapr init --runtime-version 1.0.0-rc.2 --kubernetes
    ```
 
-3. Apply system-wide manifests
+3. Install Zipkin into the cluster for tracing (will bring this into manifests later):
+
+   ```sh
+   kubectl create deployment zipkin -n default --image openzipkin/zipkin
+   kubectl expose deployment zipkin -n default --type ClusterIP --port 9411
+   ```
+
+   To view the Zipkin dashboard:
+
+   ```sh
+   kubectl port-forward -n default svc/zipkin 9412:9411
+   open http://localhost:9412
+   ```
+
+4. Apply system-wide manifests
 
    This will install a `gateway` resource in the `istio-system` namespace, to route HTTP traffic to our virtual services.
 
@@ -35,5 +49,5 @@ The following diagram shows the setup in Kubernetes, with Istio and Dapr sidecar
    (cd manifests && make)
    ```
 
-4. Follow the Web UI [readme](./web/README.md)
-5. Follow the API [readme](./api/README.md)
+5. Follow the Web UI [readme](./web/README.md)
+6. Follow the API [readme](./api/README.md)

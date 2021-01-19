@@ -12,6 +12,11 @@ spec:
     metadata:
       labels:
         app: todomvc-web
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: web
+        dapr.io/app-port: "8080"
+        dapr.io/config: todo-web
     spec:
       containers:
         - name: todomvc-web

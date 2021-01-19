@@ -12,6 +12,11 @@ spec:
     metadata:
       labels:
         app: todomvc-api
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: api
+        dapr.io/app-port: "3030"
+        dapr.io/config: todo-api
     spec:
       containers:
         - name: todomvc-api
