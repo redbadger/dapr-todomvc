@@ -1,0 +1,199 @@
+{
+  "db": "PostgreSQL",
+  "45027d9bead4c182ce5cf341a20452926574543cb35040c3a37fd60b0c5c67df": {
+    "query": "SELECT id,\n    auth_subject,\n    title,\n    completed\nFROM todos\nWHERE id = $1\n    AND auth_subject = $2\n",
+    "describe": {
+      "columns": [
+        {
+          "ordinal": 0,
+          "name": "id",
+          "type_info": "Uuid"
+        },
+        {
+          "ordinal": 1,
+          "name": "auth_subject",
+          "type_info": "Varchar"
+        },
+        {
+          "ordinal": 2,
+          "name": "title",
+          "type_info": "Text"
+        },
+        {
+          "ordinal": 3,
+          "name": "completed",
+          "type_info": "Bool"
+        }
+      ],
+      "parameters": {
+        "Left": [
+          "Uuid",
+          "Text"
+        ]
+      },
+      "nullable": [
+        false,
+        false,
+        false,
+        false
+      ]
+    }
+  },
+  "778c325e117dcfd21892b1e88e49054389d06038349dd9a16c2a99a6fd904291": {
+    "query": "INSERT INTO todos (auth_subject, title)\nVALUES ($1, $2)\nRETURNING id,\n    auth_subject,\n    title,\n    completed\n",
+    "describe": {
+      "columns": [
+        {
+          "ordinal": 0,
+          "name": "id",
+          "type_info": "Uuid"
+        },
+        {
+          "ordinal": 1,
+          "name": "auth_subject",
+          "type_info": "Varchar"
+        },
+        {
+          "ordinal": 2,
+          "name": "title",
+          "type_info": "Text"
+        },
+        {
+          "ordinal": 3,
+          "name": "completed",
+          "type_info": "Bool"
+        }
+      ],
+      "parameters": {
+        "Left": [
+          "Varchar",
+          "Text"
+        ]
+      },
+      "nullable": [
+        false,
+        false,
+        false,
+        false
+      ]
+    }
+  },
+  "8a34860f6b50058050eaf923aef66ac4d8074da67d76f36696f8ef0aea1e55a6": {
+    "query": "DELETE FROM todos\nWHERE id = $1\n    AND auth_subject = $2\nRETURNING id,\n    auth_subject,\n    title,\n    completed\n",
+    "describe": {
+      "columns": [
+        {
+          "ordinal": 0,
+          "name": "id",
+          "type_info": "Uuid"
+        },
+        {
+          "ordinal": 1,
+          "name": "auth_subject",
+          "type_info": "Varchar"
+        },
+        {
+          "ordinal": 2,
+          "name": "title",
+          "type_info": "Text"
+        },
+        {
+          "ordinal": 3,
+          "name": "completed",
+          "type_info": "Bool"
+        }
+      ],
+      "parameters": {
+        "Left": [
+          "Uuid",
+          "Text"
+        ]
+      },
+      "nullable": [
+        false,
+        false,
+        false,
+        false
+      ]
+    }
+  },
+  "eecdc6e5c150281fa57a6dfc15b58f3bab5c4d28c2316d18a73b51acf313dd79": {
+    "query": "SELECT id,\n    auth_subject,\n    title,\n    completed\nFROM todos\nWHERE auth_subject = $1\nORDER BY id\n",
+    "describe": {
+      "columns": [
+        {
+          "ordinal": 0,
+          "name": "id",
+          "type_info": "Uuid"
+        },
+        {
+          "ordinal": 1,
+          "name": "auth_subject",
+          "type_info": "Varchar"
+        },
+        {
+          "ordinal": 2,
+          "name": "title",
+          "type_info": "Text"
+        },
+        {
+          "ordinal": 3,
+          "name": "completed",
+          "type_info": "Bool"
+        }
+      ],
+      "parameters": {
+        "Left": [
+          "Text"
+        ]
+      },
+      "nullable": [
+        false,
+        false,
+        false,
+        false
+      ]
+    }
+  },
+  "f90107b3b7d22b7fbb95555c2617e555b7e4328b5255fbb988eb7ca1a166e706": {
+    "query": "UPDATE todos\nSET auth_subject = $2,\n    title = COALESCE($3, title),\n    completed = COALESCE($4, completed)\nWHERE id = $1\nRETURNING id,\n    auth_subject,\n    title,\n    completed\n",
+    "describe": {
+      "columns": [
+        {
+          "ordinal": 0,
+          "name": "id",
+          "type_info": "Uuid"
+        },
+        {
+          "ordinal": 1,
+          "name": "auth_subject",
+          "type_info": "Varchar"
+        },
+        {
+          "ordinal": 2,
+          "name": "title",
+          "type_info": "Text"
+        },
+        {
+          "ordinal": 3,
+          "name": "completed",
+          "type_info": "Bool"
+        }
+      ],
+      "parameters": {
+        "Left": [
+          "Uuid",
+          "Varchar",
+          "Text",
+          "Bool"
+        ]
+      },
+      "nullable": [
+        false,
+        false,
+        false,
+        false
+      ]
+    }
+  }
+}
