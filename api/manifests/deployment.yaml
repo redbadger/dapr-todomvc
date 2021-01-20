@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todomvc-api
+  labels:
+    app: todomvc-api
+spec:
+  selector:
+    matchLabels:
+      app: todomvc-api
+  template:
+    metadata:
+      labels:
+        app: todomvc-api
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: api
+        dapr.io/app-port: "3030"
+        dapr.io/config: todo-api
+    spec:
+      containers:
+        - name: todomvc-api
+          image: todomvc_api
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: MOUNTED_AT
+              value: /api
+            - name: DATABASE_URL
+              value: postgres://postgres:postgres@host.docker.internal:5432/postgres
+          ports:
+            - containerPort: 3030
+          resources:
+            requests:
+              memory: "32Mi"
+              cpu: "100m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
