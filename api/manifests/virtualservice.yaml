@@ -13,6 +13,13 @@ spec:
             prefix: "/api/"
         - uri:
             exact: "/api"
+      # rewrite:
+      #   uri: "/v1.0/invoke/api/method/"
+      # route:
+      #   - destination:
+      #       port:
+      #         number: 80
+      #       host: api-dapr
       rewrite:
         uri: "/"
       route:

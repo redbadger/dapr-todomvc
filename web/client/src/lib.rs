@@ -44,7 +44,7 @@ where
 {
     Request::new(api_url.to_string())
         .method(Method::Post)
-        .header(Header::authorization(format!("Bearer {}", jwt)))
+        .header(Header::bearer(jwt))
         .json(variables)?
         .fetch()
         .await?
@@ -352,9 +352,9 @@ fn view(model: &Model) -> impl IntoNodes<Msg> {
     nodes![
         view_header(&data.new_todo_title, &model),
         if data.todos.is_empty() {
-            vec![]
+            nodes![]
         } else {
-            vec![
+            nodes![
                 view_main(
                     &data.todos,
                     data.filter,

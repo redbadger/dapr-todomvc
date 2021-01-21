@@ -1,0 +1,25 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: oauth2
+spec:
+  type: middleware.http.oauth2
+  metadata:
+    - name: clientId
+      secretKeyRef:
+        name: oauth-creds
+        key: client_id
+    - name: clientSecret
+      secretKeyRef:
+        name: oauth-creds
+        key: client_secret
+    - name: scopes
+      value: openid,email,profile
+    - name: authURL
+      value: https://accounts.google.com/o/oauth2/auth
+    - name: tokenURL
+      value: https://oauth2.googleapis.com/token
+    - name: redirectURL
+      value: http://todo.red-badger.com
+    - name: authHeaderName
+      value: authorization

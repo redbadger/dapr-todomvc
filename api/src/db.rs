@@ -1,4 +1,3 @@
-#![allow(clippy::suspicious_else_formatting, clippy::toplevel_ref_arg)] // try removing this when sqlx is updated
 use anyhow::Result;
 use sqlx::{types::Uuid, PgPool};
 
@@ -12,6 +11,7 @@ pub struct Todo {
 
 impl Todo {
     pub async fn find_all(pool: &PgPool, auth_subject: &str) -> Result<Vec<Todo>> {
+        let todos = sqlx::query_file_as!(Todo, "sql/find_all.sql", auth_subject);
         let todos = sqlx::query_file_as!(Todo, "sql/find_all.sql", auth_subject)
             .fetch_all(pool)
             .await?;

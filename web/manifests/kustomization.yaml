@@ -2,7 +2,8 @@ namespace: todomvc-web
 
 resources:
   - namespace.yaml
-  - dapr.yaml
+  - dapr-oauth2.yaml
+  - dapr-config.yaml
   - secret.yaml
   - deployment.yaml
   - service.yaml

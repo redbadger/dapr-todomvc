@@ -7,8 +7,10 @@ spec:
     samplingRate: "1"
     zipkin:
       endpointAddress: "http://zipkin.default.svc.cluster.local:9411/api/v2/spans"
-  metric:
-    enabled: true
+  # httpPipeline:
+  #   handlers:
+  #     - type: middleware.http.oauth2
+  #       name: oauth2
   mtls:
     allowedClockSkew: 15m
     enabled: true
